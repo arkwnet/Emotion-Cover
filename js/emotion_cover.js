@@ -1,5 +1,5 @@
 /*
-Emotion Cover Ver.1.0_alpha2
+Emotion Cover Ver.1.0_alpha3
 (c)2015-2017 Sora Arakawa all rights reserved.
 
 This software is MIT License.
@@ -39,10 +39,17 @@ function EmotionCoverMain(){
 	}
 	if(mode==2){
 		for(var i=0; i<images.length; i++) {
-			if(mode2==1 || mode2==2){
+			if(mode2==1){
 				if(sid==i){ ctx.globalAlpha=1; }else{ ctx.globalAlpha=0.2; }
+			}else if(mode2==2){
+				if(sid==i){
+					if(alpha>0.2){ ctx.globalAlpha=alpha; }else{ ctx.globalAlpha=0.2; }
+				}else{
+					ctx.globalAlpha=1-alpha; 
+				}
 			}else{
 				ctx.globalAlpha=alpha;
+				if(sid!=i && alpha>0.2){ ctx.globalAlpha=0.2 }
 			}
 			ctx.drawImage(images[i][0],0,i*81,190,81);
 		}
@@ -66,6 +73,7 @@ function EmotionCoverMain(){
 		}
 		if(sid_next+1>images.length){ sid_next=0; }
 		if(sid+1>images.length){ sid=0; }
+		//document.title=1-alpha;
 	}
 }
 
