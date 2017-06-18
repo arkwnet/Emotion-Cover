@@ -1,5 +1,5 @@
 /*
-Emotion Cover Ver.1.0_alpha3
+Emotion Cover Ver.1.0_beta1
 (c)2015-2017 Sora Arakawa all rights reserved.
 
 This software is MIT License.
@@ -73,7 +73,6 @@ function EmotionCoverMain(){
 		}
 		if(sid_next+1>images.length){ sid_next=0; }
 		if(sid+1>images.length){ sid=0; }
-		//document.title=1-alpha;
 	}
 }
 
@@ -83,9 +82,11 @@ function EmotionCoverOnClick(ec){
     ecy = ec.clientY - rect.top;
 	if(mode!=0 && ecx>200 && ecy>0 && ecx<960 && ecy<320 && images[sid][1]!=""){ location.href=images[sid][1]; }
 	if(mode!=0 && mode2==1 && ecx>10 && ecy>0 && ecx<190 && ecy<228){
-		sid_next=parseInt(ecy/76);
-		alpha=1;
-		mode2=2;
+		if(parseInt(ecy/76)<images.length){
+			sid_next=parseInt(ecy/76);
+			alpha=1;
+			mode2=2;
+		}
 	}
 	if(mode!=0 && ecx>10 && ecy>282 && ecx<190 && ecy<320){ window.open("http://arkw.net/data/emotion_cover/","_blank"); }
 }
