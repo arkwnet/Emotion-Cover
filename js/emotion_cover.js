@@ -51,6 +51,11 @@ function EmotionCoverMain(){
 				ctx.globalAlpha=alpha;
 				if(sid!=i && alpha>0.2){ ctx.globalAlpha=0.2 }
 			}
+			if(i==sid){
+				ctx.globalAlpha=1;
+			}else{
+				ctx.globalAlpha=0.5;
+			}
 			ctx.drawImage(images[i][0],0,i*81,190,81);
 		}
 		ctx.globalAlpha=alpha;
@@ -69,10 +74,19 @@ function EmotionCoverMain(){
 		}
 		if(mode2==2){
 			alpha-=0.01;
-			if(alpha<0.02){alpha=1;sid++;sid_next++;count=0;mode2=1}
+			if(alpha<0.02){
+				alpha=1;
+				sid=sid_next;
+				sid_next=sid+1;
+				count=0;
+				mode2=1
+			}
 		}
-		if(sid_next+1>images.length){ sid_next=0; }
+		if(sid_next>images.length){ sid_next=0; }
 		if(sid+1>images.length){ sid=0; }
+	}
+	if(sid_next>images.length-1){
+		sid_next=0;
 	}
 }
 
@@ -82,8 +96,8 @@ function EmotionCoverOnClick(ec){
     ecy = ec.clientY - rect.top;
 	if(mode!=0 && ecx>200 && ecy>0 && ecx<960 && ecy<320 && images[sid][1]!=""){ location.href=images[sid][1]; }
 	if(mode!=0 && mode2==1 && ecx>10 && ecy>0 && ecx<190 && ecy<228){
-		if(parseInt(ecy/76)<images.length){
-			sid_next=parseInt(ecy/76);
+		if(parseInt(ecy/81)<images.length){
+			sid_next=parseInt(ecy/81);
 			alpha=1;
 			mode2=2;
 		}
