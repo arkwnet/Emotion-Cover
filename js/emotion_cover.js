@@ -1,5 +1,5 @@
 /*
-Emotion Cover Ver.1.0_beta1
+Emotion Cover Ver.1.0_beta3
 (c)2015-2017 Sora Arakawa all rights reserved.
 
 This software is MIT License.
@@ -56,13 +56,13 @@ function EmotionCoverMain(){
 			}else{
 				ctx.globalAlpha=0.5;
 			}
-			ctx.drawImage(images[i][0],0,i*81,190,81);
+			ctx.drawImage(images[i][0],0,i*76,180,76);
 		}
 		ctx.globalAlpha=alpha;
-		ctx.drawImage(images[sid][0],190,0,780,328);
+		ctx.drawImage(images[sid][0],180,0,780,328);
 		if(mode2==1 || mode2==2){
 			ctx.globalAlpha=1-alpha;
-			ctx.drawImage(images[sid_next][0],190,0,780,328);
+			ctx.drawImage(images[sid_next][0],180,0,780,328);
 		}
 		if(mode2==0){
 			if(alpha<0.99){ alpha+=0.01; }
@@ -94,10 +94,10 @@ function EmotionCoverOnClick(ec){
 	var rect = ec.target.getBoundingClientRect();
     ecx = ec.clientX - rect.left;
     ecy = ec.clientY - rect.top;
-	if(mode!=0 && ecx>200 && ecy>0 && ecx<960 && ecy<320 && images[sid][1]!=""){ location.href=images[sid][1]; }
-	if(mode!=0 && mode2==1 && ecx>10 && ecy>0 && ecx<190 && ecy<228){
-		if(parseInt(ecy/81)<images.length){
-			sid_next=parseInt(ecy/81);
+	if(mode!=0 && ecx>180 && ecy>0 && ecx<960 && ecy<320 && images[sid][1]!=""){ location.href=images[sid][1]; }
+	if(mode!=0 && mode2==1 && ecx>0 && ecy>0 && ecx<180 && ecy<228){
+		if(parseInt(ecy/75)<images.length){
+			sid_next=parseInt(ecy/75);
 			alpha=1;
 			mode2=2;
 		}
